@@ -1,6 +1,10 @@
 # VS Code Extension files
 *.vsix
 
+# Sensitive files
+token
+*.pat
+
 # Node modules (if any)
 node_modules/
 
