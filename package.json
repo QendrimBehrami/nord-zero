@@ -2,8 +2,9 @@
   "name": "nord-zero",
   "displayName": "Nord Zero",
   "description": "A refined Nord theme",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "Behrami",
+  "icon": "icon.png",
   "engines": {
     "vscode": "^1.74.0"
   },
