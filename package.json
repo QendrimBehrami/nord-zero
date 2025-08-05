@@ -1,0 +1,39 @@
+{
+  "name": "nord-zero",
+  "displayName": "Nord Zero",
+  "description": "A refined Nord theme",
+  "version": "0.1.0",
+  "publisher": "qendrim",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "keywords": [
+    "nord",
+    "dark",
+    "theme",
+    "git",
+    "developer",
+    "midnight",
+    "zero"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Nord Zero",
+        "uiTheme": "vs-dark",
+        "path": "./themes/nord-zero-color-theme.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QendrimBehrami/nord-zero"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Qendrim Behrami"
+  }
+}
