@@ -26,6 +26,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## Changelog
 
-### 0.1.0
-
-- Initial release
+See [CHANGELOG.md](CHANGELOG.md) for version history and release notes.
