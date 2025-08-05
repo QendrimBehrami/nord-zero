@@ -1,20 +1,10 @@
 # Nord Zero
 
-A refined version of the Nord Midnight theme with improved Git status colors and visual enhancements.
+A refined version of the Nord theme.
 
-## Features
+## Screenshots
 
-- **Clear Git Status Colors**: No more confusion between modified files and warnings
-
-  - 🟢 Added files: Green (#a3be8c)
-  - 🔵 Modified files: Cyan (#88c0d0)
-  - 🔷 Deleted files: Blue (#5e81ac)
-  - 🟠 Untracked files: Orange (#d08770)
-  - ⚠️ Warnings: Yellow (#ebcb8b) - clearly distinct from modified files
-
-- **Enhanced Activity Bar**: Improved contrast and visibility
-- **Better Search Highlighting**: More prominent find/replace results
-- **Markdown Improvements**: Enhanced code block styling
+![Nord Zero Theme](screenshots/nord-zero.png)
 
 ## Installation
 
