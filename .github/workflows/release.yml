@@ -1,0 +1,73 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - "v*" # Triggers on version tags like v0.2.5, v1.0.0, etc.
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-js-version: "18"
+
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+      - name: Package extension
+        run: vsce package
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Get version from package.json
+        id: package_version
+        run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Check version match
+        run: |
+          TAG_VERSION=${{ steps.get_version.outputs.VERSION }}
+          PACKAGE_VERSION=${{ steps.package_version.outputs.PACKAGE_VERSION }}
+          echo "Tag version: $TAG_VERSION"
+          echo "Package version: $PACKAGE_VERSION"
+          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "❌ Version mismatch! Tag: $TAG_VERSION, Package: $PACKAGE_VERSION"
+            echo "Please update package.json version to match the tag."
+            exit 1
+          fi
+          echo "✅ Versions match: $TAG_VERSION"
+
+      - name: Extract changelog for current version
+        id: changelog
+        run: |
+          VERSION=${{ steps.get_version.outputs.VERSION }}
+          # Extract the changelog section for this version
+          sed -n "/## \[$VERSION\]/,/## \[/p" CHANGELOG.md | sed '$d' > current_changelog.md
+          # If the file is empty, use a default message
+          if [ ! -s current_changelog.md ]; then
+            echo "## Changes in v$VERSION" > current_changelog.md
+            echo "See CHANGELOG.md for full details." >> current_changelog.md
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: current_changelog.md
+          files: "*.vsix"
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish to VS Code Marketplace
+        run: vsce publish -p ${{ secrets.VSCE_TOKEN }}
+        env:
+          VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
