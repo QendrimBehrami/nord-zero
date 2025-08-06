@@ -632,6 +632,18 @@
       "settings": {
         "foreground": "#D8DEE9"
       }
+    },
+    {
+      "scope": ["storage.type.annotation", "punctuation.definition.annotation"],
+      "settings": {
+        "foreground": "#88c0d0"
+      }
+    },
+    {
+      "scope": "meta.annotation",
+      "settings": {
+        "foreground": "#88c0d0"
+      }
     }
   ]
 }
