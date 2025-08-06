@@ -12,8 +12,6 @@
 - Removed duplicate or invalid theme keys
 - Minor adjustments for better compatibility with VS Code UI
 
-All notable changes to the Nord Zero theme will be documented in this file.
-
 ## [0.2.5] - 2025-08-06
 
 ### Added
